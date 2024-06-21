@@ -30,7 +30,7 @@ class CategoryController extends Controller
     public function index(): View
     {
         $categories = $this->category->get();
-        return view('dashboard.pages.categories.index', compact('categories'));
+        return view('pages.categories.index', compact('categories'));
     }
 
     /**
@@ -40,7 +40,7 @@ class CategoryController extends Controller
      */
     public function create(): View
     {
-        return view('dashboard.pages.categories.add');
+        return view('pages.categories.add');
     }
 
     /**
@@ -51,7 +51,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category): View
     {
-        return view('dashboard.pages.categories.edit', compact('category'));
+        return view('pages.categories.edit', compact('category'));
     }
 
     /**
@@ -63,7 +63,6 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
-
         $this->category->update($category->id, $request->validated());
 
         return to_route('categories.index')->with('success', trans('alert.update_success'));

@@ -15,12 +15,10 @@ class StoreRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'article_category_id' => 'required|exists:article_categories,id',
+            'category_id' => 'required|exists:categories,id',
             'title' => 'required|max:150|unique:articles',
             'description' => 'required',
             'photo' => 'required|max:5000|mimes:jpg,png,jpeg',
-            'content' => 'required',
-            'status' => ['required', new StatusRule]
         ];
     }
 

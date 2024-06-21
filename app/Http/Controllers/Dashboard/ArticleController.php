@@ -31,14 +31,14 @@ class ArticleController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return View|JsonResponse
+     * @return View
      */
 
-    public function index(Request $request): View|JsonResponse
+    public function index(Request $request): View
     {
-        $data = $this->article->get();
+        $articles = $this->article->get();
 
-        return view('dashboard.pages.articles.index', compact('data'));
+        return view('pages.articles.index', compact('articles'));
     }
 
     /**
@@ -50,7 +50,7 @@ class ArticleController extends Controller
     {
         $categories = $this->category->get();
 
-        return view('dashboard.pages.articles.create', compact('categories'));
+        return view('pages.articles.create', compact('categories'));
     }
 
     /**
@@ -63,7 +63,18 @@ class ArticleController extends Controller
     {
         $categories = $this->category->get();
 
-        return view('dashboard.pages.articles.edit', compact('categories', 'article'));
+        return view('pages.articles.edit', compact('categories', 'article'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Article $article
+     * @return View
+     */
+    public function show(Article $article): View
+    {
+        return view('pages.articles.show', compact('article'));
     }
 
     /**

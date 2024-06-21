@@ -4,7 +4,6 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ArticleInterface;
 use App\Models\Article;
-use Exception;
 
 class ArticleRepository extends BaseRepository implements ArticleInterface
 {
@@ -42,12 +41,11 @@ class ArticleRepository extends BaseRepository implements ArticleInterface
      * Handle the Get all data event from models.
      *
      * @return mixed
-     * @throws Exception
      */
     public function get(): mixed
     {
-        $this->model->query()
-            ->with(['category', 'user'])
+        return $this->model->query()
+            ->with('category')
             ->get();
     }
 
